@@ -11,6 +11,7 @@ import { useAppState } from "@/context/app-state-context";
 type LogType = "INFO" | "SUCCESS" | "WARNING" | "CRITICAL";
 
 interface LogEntry {
+  id: number;
   type: LogType;
   message: string;
   timestamp: string;
@@ -24,11 +25,13 @@ const logTypeStyles: { [key in LogType]: { color: string; icon: React.ReactNode 
 };
 
 const initialLogMessages = [
-    { type: "INFO" as LogType, message: "Connecting to Oceanus Proxima telemetry stream..." },
-    { type: "SUCCESS" as LogType, message: "Bio-Firewall: SECURE" },
-    { type: "SUCCESS" as LogType, message: "Tele-robotics link: STABLE" },
-    { type: "INFO" as LogType, message: "Real-time anomaly detection armed." },
+    { id: 1, type: "INFO" as LogType, message: "Connecting to Oceanus Proxima telemetry stream..." },
+    { id: 2, type: "SUCCESS" as LogType, message: "Bio-Firewall: SECURE" },
+    { id: 3, type: "SUCCESS" as LogType, message: "Tele-robotics link: STABLE" },
+    { id: 4, type: "INFO" as LogType, message: "Real-time anomaly detection armed." },
 ];
+
+let logIdCounter = 5;
 
 export function SystemLog() {
   const [logs, setLogs] = useState<LogEntry[]>([]);
@@ -37,15 +40,16 @@ export function SystemLog() {
   const { crisisMode } = useAppState();
 
   useEffect(() => {
-    const initialLogs = initialLogMessages.map(log => ({
+    // This effect runs only on the client after hydration
+    const clientInitialLogs = initialLogMessages.map(log => ({
       ...log,
       timestamp: new Date().toLocaleTimeString(),
     }));
-    setLogs(initialLogs);
+    setLogs(clientInitialLogs);
   }, []);
 
   const addLog = (type: LogType, message: string) => {
-    setLogs(prev => [...prev.slice(-100), { type, message, timestamp: new Date().toLocaleTimeString() }]);
+    setLogs(prev => [...prev.slice(-100), { id: logIdCounter++, type, message, timestamp: new Date().toLocaleTimeString() }]);
   };
 
   useEffect(() => {
@@ -82,7 +86,7 @@ export function SystemLog() {
       console.error("Anomaly detection failed:", error);
       addLog("CRITICAL", "Anomaly detection AI offline. Check connection.");
     }
-  }, 7000);
+  }, 30000);
 
   useEffect(() => {
     if (logContainerRef.current) {
@@ -95,11 +99,11 @@ export function SystemLog() {
       <h2 className="text-lg font-bold text-primary mb-2 tracking-wider">SYSTEM LOGS</h2>
       <div ref={logContainerRef} className="flex-grow overflow-y-auto pr-2 bg-black/30 rounded-md p-2">
         <AnimatePresence initial={false}>
-          {logs.map((log, index) => {
+          {logs.map((log) => {
             const style = logTypeStyles[log.type];
             return (
               <motion.div
-                key={index}
+                key={log.id}
                 layout
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
