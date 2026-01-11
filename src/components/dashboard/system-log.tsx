@@ -23,26 +23,37 @@ const logTypeStyles: { [key in LogType]: { color: string; icon: React.ReactNode 
   CRITICAL: { color: "text-red-500", icon: <AlertTriangle className="w-3.5 h-3.5" /> },
 };
 
+const initialLogMessages = [
+    { type: "INFO" as LogType, message: "Connecting to Oceanus Proxima telemetry stream..." },
+    { type: "SUCCESS" as LogType, message: "Bio-Firewall: SECURE" },
+    { type: "SUCCESS" as LogType, message: "Tele-robotics link: STABLE" },
+    { type: "INFO" as LogType, message: "Real-time anomaly detection armed." },
+];
+
 export function SystemLog() {
-  const [logs, setLogs] = useState<LogEntry[]>([
-    { type: "INFO", message: "Connecting to Oceanus Proxima telemetry stream...", timestamp: new Date().toLocaleTimeString() },
-    { type: "SUCCESS", message: "Bio-Firewall: SECURE", timestamp: new Date().toLocaleTimeString() },
-    { type: "SUCCESS", message: "Tele-robotics link: STABLE", timestamp: new Date().toLocaleTimeString() },
-    { type: "INFO", message: "Real-time anomaly detection armed.", timestamp: new Date().toLocaleTimeString() },
-  ]);
+  const [logs, setLogs] = useState<LogEntry[]>([]);
   const logContainerRef = useRef<HTMLDivElement>(null);
   const { thermodynamics } = useSimulatedData();
   const { crisisMode } = useAppState();
+
+  useEffect(() => {
+    const initialLogs = initialLogMessages.map(log => ({
+      ...log,
+      timestamp: new Date().toLocaleTimeString(),
+    }));
+    setLogs(initialLogs);
+  }, []);
 
   const addLog = (type: LogType, message: string) => {
     setLogs(prev => [...prev.slice(-100), { type, message, timestamp: new Date().toLocaleTimeString() }]);
   };
 
   useEffect(() => {
-    if (crisisMode) {
+    if (crisisMode && logs.length > 0) { // check logs.length to avoid adding logs before initialization
       addLog("CRITICAL", "CRISIS MODE ACTIVATED. REACTOR SCRAM INITIATED.");
       addLog("WARNING", "Switching to emergency fuel cells. Non-essential systems offline.");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [crisisMode]);
 
   useInterval(async () => {
