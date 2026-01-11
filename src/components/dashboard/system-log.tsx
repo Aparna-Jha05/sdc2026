@@ -4,8 +4,9 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DashboardPanel } from "./dashboard-panel";
 import { detectTelemetryAnomalies } from "@/ai/flows/telemetry-anomaly-detection";
-import { useInterval, useSimulatedPowerData } from "@/lib/hooks";
+import { useInterval, useSimulatedData } from "@/lib/hooks";
 import { AlertTriangle, CheckCircle, Info } from "lucide-react";
+import { useAppState } from "@/context/app-state-context";
 
 type LogType = "INFO" | "SUCCESS" | "WARNING" | "CRITICAL";
 
@@ -30,13 +31,24 @@ export function SystemLog() {
     { type: "INFO", message: "Real-time anomaly detection armed.", timestamp: new Date().toLocaleTimeString() },
   ]);
   const logContainerRef = useRef<HTMLDivElement>(null);
-  const { coreA, coreB, powerOutput } = useSimulatedPowerData();
+  const { thermodynamics } = useSimulatedData();
+  const { crisisMode } = useAppState();
 
   const addLog = (type: LogType, message: string) => {
-    setLogs(prev => [...prev, { type, message, timestamp: new Date().toLocaleTimeString() }]);
+    setLogs(prev => [...prev.slice(-100), { type, message, timestamp: new Date().toLocaleTimeString() }]);
   };
 
+  useEffect(() => {
+    if (crisisMode) {
+      addLog("CRITICAL", "CRISIS MODE ACTIVATED. REACTOR SCRAM INITIATED.");
+      addLog("WARNING", "Switching to emergency fuel cells. Non-essential systems offline.");
+    }
+  }, [crisisMode]);
+
   useInterval(async () => {
+    if (crisisMode) return;
+
+    const { coreA, coreB, powerOutput } = thermodynamics;
     const telemetryData = { coreATemp: coreA.toFixed(1), coreBTemp: coreB.toFixed(1), powerOutput: powerOutput.toFixed(2) };
     const historicalData = { avgCoreTemp: 600, avgPowerOutput: 18.4 };
     
@@ -69,7 +81,7 @@ export function SystemLog() {
 
   return (
     <DashboardPanel className="flex flex-col">
-      <h2 className="text-lg font-bold text-cyan-400 mb-2 tracking-wider">SYSTEM LOGS</h2>
+      <h2 className="text-lg font-bold text-primary mb-2 tracking-wider">SYSTEM LOGS</h2>
       <div ref={logContainerRef} className="flex-grow overflow-y-auto pr-2 bg-black/30 rounded-md p-2">
         <AnimatePresence initial={false}>
           {logs.map((log, index) => {

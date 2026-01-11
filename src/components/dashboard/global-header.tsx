@@ -1,11 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Thermometer, Gauge, Shield } from "lucide-react";
-import { useSimulatedNumber } from "@/lib/hooks";
+import { useSimulatedData } from "@/lib/hooks";
 
 export function GlobalHeader() {
   const [missionTime, setMissionTime] = useState("T+05Y:012D:04H");
-  const externalPressure = useSimulatedNumber(50.1, 0.2, 3000);
+  const { global } = useSimulatedData();
 
   useEffect(() => {
     const missionStart = new Date();
@@ -28,20 +27,20 @@ export function GlobalHeader() {
   }, []);
 
   return (
-    <header className="w-full bg-slate-900/50 backdrop-blur-md border-b-2 border-cyan-500/30 p-2 sm:p-3 flex justify-between items-center text-sm sm:text-base">
+    <header className="w-full bg-slate-900/50 backdrop-blur-md border-b-2 border-border/30 p-2 sm:p-3 flex justify-between items-center text-sm sm:text-base">
       <div className="flex items-center gap-4">
-        <h1 className="font-bold text-cyan-400 text-lg sm:text-xl tracking-widest">OCEANUS PROXIMA</h1>
-        <div className="hidden md:block w-px h-6 bg-cyan-500/30"></div>
-        <p className="hidden md:block text-cyan-300">{missionTime}</p>
+        <h1 className="font-bold text-primary text-lg sm:text-xl tracking-widest">OCEANUS PROXIMA</h1>
+        <div className="hidden md:block w-px h-6 bg-border/30"></div>
+        <p className="hidden md:block text-primary/90">{missionTime}</p>
       </div>
       <div className="flex items-center gap-3 sm:gap-6 text-xs sm:text-sm">
         <div className="flex items-center gap-1 sm:gap-2">
           <p className="text-foreground/70">DEPTH:</p>
-          <p className="font-bold text-cyan-400">5,200m</p>
+          <p className="font-bold text-primary">5,200m</p>
         </div>
         <div className="flex items-center gap-1 sm:gap-2">
           <p className="text-foreground/70">EXT. PRESSURE:</p>
-          <p className="font-bold text-cyan-400">{externalPressure.toFixed(2)} MPa</p>
+          <p className="font-bold text-primary">{global.externalPressure.toFixed(2)} MPa</p>
         </div>
         <div className="hidden sm:flex items-center gap-2">
           <p className="text-foreground/70">RAD SHIELDING:</p>

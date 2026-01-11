@@ -32,7 +32,7 @@ export function RadialChart({ value, label }: RadialChartProps) {
         </RadialBarChart>
       </ResponsiveContainer>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-4xl font-bold text-cyan-300">{value.toFixed(1)}%</span>
+        <span className="text-4xl font-bold text-primary/90">{value.toFixed(1)}%</span>
         <span className="text-sm text-foreground/70">{label}</span>
       </div>
     </div>

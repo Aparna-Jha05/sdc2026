@@ -17,7 +17,7 @@ export const VerticalProgress = ({ value, target, label, title }: VerticalProgre
       <p className="text-xs text-center text-foreground/70 -mb-1">{title}</p>
       <div className="w-8 h-48 bg-slate-800/50 rounded-md overflow-hidden relative border border-slate-700">
         <motion.div
-          className={`absolute bottom-0 w-full ${isWarning ? "bg-amber-500" : "bg-cyan-500"}`}
+          className={`absolute bottom-0 w-full ${isWarning ? "bg-amber-500" : "bg-primary"}`}
           initial={{ height: 0 }}
           animate={{ height: `${height}%` }}
           transition={{ duration: 0.5, ease: "circOut" }}

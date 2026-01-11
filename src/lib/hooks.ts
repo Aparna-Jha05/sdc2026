@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
+import { useAppState } from '@/context/app-state-context';
 
 export function useInterval(callback: () => void, delay: number | null) {
   const savedCallback = useRef(callback);
@@ -20,49 +21,81 @@ export function useInterval(callback: () => void, delay: number | null) {
   }, [delay]);
 }
 
-export function useSimulatedNumber(baseValue: number, jitter: number, interval: number) {
-  const [value, setValue] = useState(baseValue);
+// Consolidated simulation hook
+export function useSimulatedData() {
+    const { crisisMode } = useAppState();
 
-  useInterval(() => {
-    setValue(baseValue + (Math.random() - 0.5) * jitter);
-  }, interval);
+    // Thermodynamics
+    const [thermodynamics, setThermodynamics] = useState({
+        coreA: 600,
+        coreB: 600,
+        powerOutput: 18.4,
+        isCogenerationActive: true,
+    });
 
-  return value;
-}
+    // Global
+    const [global, setGlobal] = useState({
+        externalPressure: 50.1,
+    });
 
-export function useSimulatedPowerData() {
-    const [coreA, setCoreA] = useState(600);
-    const [coreB, setCoreB] = useState(600);
-    const [powerOutput, setPowerOutput] = useState(18.4);
-    const [isCogenerationActive, setIsCogenerationActive] = useState(true);
+    // Biometrics
+    const [biometrics, setBiometrics] = useState({
+        o2Saturation: 98.2,
+        waterFlow: 1200,
+    });
 
     useInterval(() => {
-        let newCoreA = coreA + (Math.random() - 0.5) * 5;
-        let newCoreB = coreB + (Math.random() - 0.5) * 5;
+        // Thermodynamics Simulation
+        let { coreA, coreB } = thermodynamics;
+        let newPowerOutput;
+        if (crisisMode) {
+            newPowerOutput = 1.84 + (Math.random() - 0.5) * 0.4;
+            coreA -= 20;
+            coreB -= 20;
+        } else {
+            coreA += (Math.random() - 0.5) * 5;
+            coreB += (Math.random() - 0.5) * 5;
 
-        // Introduce a chance for a larger anomaly
-        if (Math.random() < 0.05) {
-            newCoreA += (Math.random() - 0.5) * 150;
+            if (Math.random() < 0.05) coreA += (Math.random() - 0.5) * 150;
+            if (Math.random() < 0.05) coreB += (Math.random() - 0.5) * 150;
+            
+            const avgTemp = (coreA + coreB) / 2;
+            const tempFactor = 1 - (Math.abs(600 - avgTemp) / 400);
+            newPowerOutput = 18.4 * tempFactor + (Math.random() - 0.5) * 0.2;
         }
-        if (Math.random() < 0.05) {
-            newCoreB += (Math.random() - 0.5) * 150;
-        }
 
-        newCoreA = Math.max(500, Math.min(800, newCoreA));
-        newCoreB = Math.max(500, Math.min(800, newCoreB));
+        setThermodynamics({
+            coreA: Math.max(200, Math.min(800, coreA)),
+            coreB: Math.max(200, Math.min(800, coreB)),
+            powerOutput: Math.max(crisisMode ? 0 : 15, Math.min(18.8, newPowerOutput)),
+            isCogenerationActive: newPowerOutput > 16.5 && !crisisMode,
+        });
 
-        const avgTemp = (newCoreA + newCoreB) / 2;
-        const tempFactor = 1 - (Math.abs(600 - avgTemp) / 400); // Penalty for being off-target
+        // Global Simulation
+        setGlobal({
+            externalPressure: 50.1 + (Math.random() - 0.5) * 0.2,
+        });
         
-        let newPowerOutput = 18.4 * tempFactor + (Math.random() - 0.5) * 0.2;
-        newPowerOutput = Math.max(15, Math.min(18.8, newPowerOutput));
-
-        setCoreA(newCoreA);
-        setCoreB(newCoreB);
-        setPowerOutput(newPowerOutput);
-        setIsCogenerationActive(newPowerOutput > 16.5 && tempFactor > 0.8);
+        // Biometrics Simulation
+        setBiometrics({
+            o2Saturation: 98.2 + (Math.random() - 0.5) * 0.5,
+            waterFlow: 1200 + (Math.random() - 0.5) * 50,
+        });
 
     }, 2000);
 
-    return { coreA, coreB, powerOutput, isCogenerationActive };
+    return { thermodynamics, global, biometrics };
+}
+
+// A simple hook to simulate a single number value
+export function useSimulatedNumber(baseValue: number, jitter: number, interval: number, clampMin = -Infinity, clampMax = Infinity) {
+  const [value, setValue] = useState(baseValue);
+
+  useInterval(() => {
+    let newValue = value + (Math.random() - 0.5) * jitter;
+    newValue = Math.max(clampMin, Math.min(clampMax, newValue));
+    setValue(newValue);
+  }, interval);
+
+  return value;
 }

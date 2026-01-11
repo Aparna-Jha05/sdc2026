@@ -5,7 +5,7 @@ export function DigitalTwin() {
   return (
     <DashboardPanel delay={0.2}>
       <div className="h-full flex flex-col items-center justify-center">
-        <h2 className="text-lg font-bold text-cyan-400 mb-4 tracking-wider">HABITAT DIGITAL TWIN</h2>
+        <h2 className="text-lg font-bold text-primary mb-4 tracking-wider">HABITAT DIGITAL TWIN</h2>
         <div className="w-full h-full flex items-center justify-center">
           <svg viewBox="0 0 400 400" className="w-full h-full max-w-[400px] max-h-[400px]">
             <defs>

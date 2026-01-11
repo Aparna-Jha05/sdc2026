@@ -3,7 +3,7 @@
 import { Droplets, Sprout, Wind } from "lucide-react";
 import { DashboardPanel } from "./dashboard-panel";
 import { RadialChart } from "./radial-chart";
-import { useSimulatedNumber } from "@/lib/hooks";
+import { useSimulatedData } from "@/lib/hooks";
 
 const crops = [
   { name: "Potatoes", status: "Nominal" },
@@ -13,32 +13,31 @@ const crops = [
 ];
 
 export function BiometricsPanel() {
-  const o2Saturation = useSimulatedNumber(98.2, 0.5, 2500);
-  const waterFlow = useSimulatedNumber(1200, 50, 3000);
-
+  const { biometrics } = useSimulatedData();
+  
   return (
     <DashboardPanel delay={0.4}>
       <div className="h-full flex flex-col">
-        <h2 className="text-lg font-bold text-cyan-400 mb-4 tracking-wider">AQUA-LUNG BIOMETRICS</h2>
+        <h2 className="text-lg font-bold text-primary mb-4 tracking-wider">AQUA-LUNG BIOMETRICS</h2>
         <div className="flex flex-col xl:flex-row items-center gap-4 mb-4">
           <div className="w-full xl:w-1/2">
-            <RadialChart value={o2Saturation} label="O₂ Saturation" />
+            <RadialChart value={biometrics.o2Saturation} label="O₂ Saturation" />
           </div>
           <div className="w-full xl:w-1/2 flex flex-col gap-2 text-center xl:text-left">
             <div className="flex items-center justify-center xl:justify-start gap-2">
-              <Droplets className="w-5 h-5 text-cyan-400" />
-              <span className="font-bold text-lg">{waterFlow.toFixed(0)} L/hr</span>
+              <Droplets className="w-5 h-5 text-primary" />
+              <span className="font-bold text-lg">{biometrics.waterFlow.toFixed(0)} L/hr</span>
             </div>
             <p className="text-xs text-foreground/70">WATER RECYCLED</p>
             <div className="flex items-center justify-center xl:justify-start gap-2 mt-2">
-              <Wind className="w-5 h-5 text-cyan-400" />
+              <Wind className="w-5 h-5 text-primary" />
               <span className="font-bold text-lg">ACTIVE</span>
             </div>
             <p className="text-xs text-foreground/70">ATMOSPHERE SCRUBBERS</p>
           </div>
         </div>
         
-        <h3 className="text-md font-bold text-cyan-400/80 mt-4 mb-2 flex items-center gap-2"><Sprout className="w-5 h-5" /> BIOMASS YIELD</h3>
+        <h3 className="text-md font-bold text-primary/80 mt-4 mb-2 flex items-center gap-2"><Sprout className="w-5 h-5" /> BIOMASS YIELD</h3>
         <div className="flex-grow rounded-md p-2 bg-black/20">
           <ul className="space-y-2">
             {crops.map((crop) => (
