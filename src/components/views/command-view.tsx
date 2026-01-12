@@ -16,7 +16,7 @@ export function CommandView() {
         <div className="lg:col-span-6 min-h-[300px] sm:min-h-[400px] lg:min-h-0">
           <DashboardPanel delay={0.2}>
             <div className="h-full flex flex-col items-center justify-center">
-              <h2 className="text-base sm:text-lg font-headline font-bold text-primary mb-2 sm:mb-4 tracking-wider">HABITAT DIGITAL TWIN</h2>
+              <h2 className="text-base sm:text-lg font-headline font-bold text-primary mb-2 sm:mb-4 tracking-wider shrink-0">HABITAT DIGITAL TWIN</h2>
               <div className="w-full flex-1 flex items-center justify-center p-4 min-h-0">
                 <DigitalTwinDiagram />
               </div>
@@ -27,7 +27,7 @@ export function CommandView() {
           <BiometricsPanel />
         </div>
       </div>
-      <div className="h-48 xl:h-56">
+      <div className="h-48 xl:h-56 shrink-0">
         <SystemLog />
       </div>
     </div>

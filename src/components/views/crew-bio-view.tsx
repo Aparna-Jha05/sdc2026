@@ -23,7 +23,7 @@ const CrewCard = ({ member }: { member: typeof crewData[0] }) => {
   const isRadHigh = radiation > 0.8;
 
   return (
-    <DashboardPanel className={cn(isRadHigh && "border-destructive/80 bg-destructive/10")}>
+    <DashboardPanel className={cn("h-full", isRadHigh && "border-destructive/80 bg-destructive/10")}>
       <div className="flex items-center gap-3">
         <img src={`https://i.pravatar.cc/80?u=${member.avatar}`} alt={member.name} className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-primary/50" />
         <div>
@@ -106,9 +106,11 @@ export function CrewBioView() {
     <div className="h-full flex flex-col gap-4">
       <h1 className="text-xl sm:text-2xl font-headline font-bold text-primary tracking-widest">CREW & BIOMETRICS</h1>
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 flex-grow min-h-0">
-        <div className="xl:col-span-2 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4">
+        <div className="xl:col-span-2 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 min-h-0">
           {crewData.map((member) => (
-            <CrewCard key={member.id} member={member} />
+            <div key={member.id} className="min-h-[150px] sm:min-h-0">
+                <CrewCard member={member} />
+            </div>
           ))}
         </div>
         <div className="min-h-[40vh] xl:min-h-0">
