@@ -1,5 +1,7 @@
+
 "use client";
 import { DashboardPanel } from "@/components/dashboard/dashboard-panel";
+import Image from "next/image";
 import {
   Accordion,
   AccordionContent,
@@ -61,6 +63,13 @@ export function EngineeringView() {
             <AccordionItem value="item-2">
                 <AccordionTrigger className="text-lg text-primary/90">Habitat Repair Technologies (Deep Sea & Aerospace Adaptation)</AccordionTrigger>
                 <AccordionContent>
+                <Image
+                      src="/habitat-repair.png"
+                      alt="Habitat Repair Technologies"
+                      width={1200}
+                      height={400}
+                      className="w-full rounded-lg mb-4"
+                    />
                     <div className="space-y-6 text-foreground/80">
                         <div>
                             <h4 className="font-bold text-primary/80">1. Passive Repair: Self-Healing Cryo-Composites</h4>
@@ -84,6 +93,13 @@ export function EngineeringView() {
             <AccordionItem value="item-3">
                 <AccordionTrigger className="text-lg text-primary/90">Crisis Response: Safety & Redundancy</AccordionTrigger>
                 <AccordionContent>
+                <Image
+                      src="/crisis-response.png"
+                      alt="Crisis Response Systems"
+                      width={1200}
+                      height={400}
+                      className="w-full rounded-lg mb-4"
+                    />
                     <div className="space-y-6 text-foreground/80">
                         <div>
                             <h4 className="font-bold text-primary/80">Structural Defence Functions</h4>
@@ -123,3 +139,5 @@ export function EngineeringView() {
     </div>
   );
 }
+
+    
