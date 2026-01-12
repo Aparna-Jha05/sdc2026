@@ -37,7 +37,7 @@ const IsruFoundryQueue = () => {
   return (
     <DashboardPanel className="h-full">
         <div className="h-full flex flex-col">
-            <h2 className="text-md sm:text-lg font-bold text-primary mb-4 flex items-center gap-2">
+            <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4 flex items-center gap-2">
                 <Printer /> ISRU FOUNDRY
             </h2>
             <div className="flex-grow space-y-4 overflow-y-auto pr-2">
@@ -64,7 +64,7 @@ const IsruFoundryQueue = () => {
 const InventoryLevels = () => {
     return (
         <DashboardPanel>
-            <h2 className="text-md sm:text-lg font-bold text-primary mb-4 flex items-center gap-2">
+            <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4 flex items-center gap-2">
                 <Package /> INVENTORY
             </h2>
             <div className="space-y-5">
@@ -104,7 +104,7 @@ const InventoryLevels = () => {
 export function LogisticsView() {
   return (
     <div className="h-full flex flex-col gap-4">
-      <h1 className="text-xl sm:text-2xl font-bold text-primary tracking-widest">LOGISTICS & ISRU</h1>
+      <h1 className="text-xl sm:text-2xl font-headline font-bold text-primary tracking-widest">LOGISTICS & ISRU</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-grow min-h-0">
         <div className="min-h-[50vh] md:min-h-0">
           <IsruFoundryQueue />

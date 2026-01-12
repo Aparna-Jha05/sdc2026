@@ -48,7 +48,7 @@ const RoverStatus = ({ name, color }: { name: string, color: string }) => {
 
     return (
         <DashboardPanel>
-            <h3 className={`font-bold text-md mb-3 text-${color}-400`}>ROVER {name}</h3>
+            <h3 className={`font-headline font-bold text-md mb-3 text-${color}-400`}>ROVER {name}</h3>
             <div className="space-y-3 text-sm">
                 <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
@@ -73,7 +73,7 @@ const VideoFeed = () => {
     return (
         <DashboardPanel className="h-full">
             <div className="h-full flex flex-col">
-                <h3 className="font-bold text-md text-primary mb-2">ROVER ALPHA - FWD CAM</h3>
+                <h3 className="font-headline font-bold text-md text-primary mb-2">ROVER ALPHA - FWD CAM</h3>
                 <div className="flex-grow bg-black/50 rounded-md static-noise flex items-center justify-center">
                     <div className="text-center p-4 bg-black/70 rounded-md">
                         <p className="text-lg font-bold text-red-500">NO SIGNAL</p>
@@ -89,12 +89,12 @@ const VideoFeed = () => {
 export function ExteriorView() {
   return (
     <div className="h-full flex flex-col gap-4">
-      <h1 className="text-xl sm:text-2xl font-bold text-primary tracking-widest">EXTERIOR TELE-ROBOTICS</h1>
+      <h1 className="text-xl sm:text-2xl font-headline font-bold text-primary tracking-widest">EXTERIOR TELE-ROBOTICS</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 flex-grow min-h-0">
         <div className="lg:col-span-2 min-h-[50vh] lg:min-h-0">
           <DashboardPanel>
             <div className="h-full flex flex-col">
-                <h2 className="text-md sm:text-lg font-bold text-primary mb-2">SURFACE RADAR GRID</h2>
+                <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-2">SURFACE RADAR GRID</h2>
                 <div className="flex-grow">
                     <RadarGrid />
                 </div>

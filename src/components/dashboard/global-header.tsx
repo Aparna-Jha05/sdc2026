@@ -27,13 +27,13 @@ export function GlobalHeader() {
   }, []);
 
   return (
-    <header className="w-full bg-slate-900/50 backdrop-blur-md border-b-2 border-border/30 p-2 sm:p-3 flex justify-between items-center text-sm sm:text-base">
+    <header className="w-full bg-slate-900/50 backdrop-blur-md border-b-2 border-border/30 p-2 sm:p-3 flex justify-between items-center text-sm sm:text-base font-headline">
       <div className="flex items-center gap-2 sm:gap-4">
         <h1 className="font-bold text-primary text-base sm:text-xl tracking-widest truncate">OCEANUS PROXIMA</h1>
         <div className="hidden lg:block w-px h-6 bg-border/30"></div>
-        <p className="hidden xl:block text-primary/90">{missionTime}</p>
+        <p className="hidden xl:block text-primary/90 font-body">{missionTime}</p>
       </div>
-      <div className="flex items-center gap-3 sm:gap-4 text-[10px] xxs:text-xs sm:text-sm">
+      <div className="flex items-center gap-3 sm:gap-4 text-[10px] xxs:text-xs sm:text-sm font-body">
         <div className="flex items-center gap-1 sm:gap-2">
           <p className="text-foreground/70 hidden sm:block">DEPTH:</p>
           <p className="font-bold text-primary">5.2km</p>

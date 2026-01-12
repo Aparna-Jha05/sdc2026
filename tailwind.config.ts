@@ -11,7 +11,7 @@ export default {
     extend: {
       fontFamily: {
         body: ["'Space Mono'", 'monospace'],
-        headline: ["'Space Mono'", 'monospace'],
+        headline: ["'Orbitron'", 'sans-serif'],
         code: ["'Space Mono'", 'monospace'],
       },
       colors: {

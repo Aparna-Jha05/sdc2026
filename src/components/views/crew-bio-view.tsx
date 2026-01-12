@@ -27,7 +27,7 @@ const CrewCard = ({ member }: { member: typeof crewData[0] }) => {
       <div className="flex items-center gap-3">
         <img src={`https://i.pravatar.cc/80?u=${member.avatar}`} alt={member.name} className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-primary/50" />
         <div>
-          <h3 className="font-bold text-xs sm:text-sm text-primary">{member.name}</h3>
+          <h3 className="font-headline font-bold text-xs sm:text-sm text-primary">{member.name}</h3>
         </div>
       </div>
       <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
@@ -104,7 +104,7 @@ const Heatmap = () => {
 export function CrewBioView() {
   return (
     <div className="h-full flex flex-col gap-4">
-      <h1 className="text-xl sm:text-2xl font-bold text-primary tracking-widest">CREW & BIOMETRICS</h1>
+      <h1 className="text-xl sm:text-2xl font-headline font-bold text-primary tracking-widest">CREW & BIOMETRICS</h1>
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 flex-grow min-h-0">
         <div className="xl:col-span-2 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4">
           {crewData.map((member) => (
@@ -114,7 +114,7 @@ export function CrewBioView() {
         <div className="min-h-[40vh] xl:min-h-0">
             <DashboardPanel>
                 <div className="h-full flex flex-col">
-                    <h2 className="text-md sm:text-lg font-bold text-primary mb-2">STRESS HEATMAP</h2>
+                    <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-2">STRESS HEATMAP</h2>
                     <p className="text-xs text-foreground/60 mb-4">Real-time audio-visual stress indicators.</p>
                     <div className="flex-grow">
                         <Heatmap />

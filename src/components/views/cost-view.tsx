@@ -35,14 +35,14 @@ const vulnerabilityStyles: { [key: string]: string } = {
 export function CostView() {
   return (
     <div className="h-full flex flex-col gap-4">
-      <h1 className="text-xl sm:text-2xl font-bold text-primary tracking-widest">
+      <h1 className="text-xl sm:text-2xl font-headline font-bold text-primary tracking-widest">
         PROJECT COST ANALYSIS
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-grow min-h-0">
         <div className="lg:col-span-1 min-h-[50vh] lg:min-h-0">
             <DashboardPanel>
                 <div className="h-full w-full flex flex-col">
-                  <h2 className="text-md sm:text-lg font-bold text-primary mb-4">COST vs. VULNERABILITY</h2>
+                  <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4">COST vs. VULNERABILITY</h2>
                   <ScrollArea className="flex-grow">
                     <Table>
                         <TableHeader>
@@ -75,7 +75,7 @@ export function CostView() {
         </div>
         <div className="lg:col-span-1 min-h-[50vh] lg:min-h-0">
             <DashboardPanel>
-                <h2 className="text-md sm:text-lg font-bold text-primary mb-4">PROJECT COST BREAKDOWN</h2>
+                <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4">PROJECT COST BREAKDOWN</h2>
                 <div className="flex items-center justify-center h-full">
                     <Image
                         src="https://storage.googleapis.com/maker-studio-project-images-prod/project-images/d1175c57-6101-4475-a0d0-6f0a6d0c9f13/user-images/6d31215b-9ecb-4395-8854-8e11e8601248"

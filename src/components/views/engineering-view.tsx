@@ -28,14 +28,14 @@ const pressureData = [
 export function EngineeringView() {
   return (
     <div className="h-full flex flex-col gap-4">
-      <h1 className="text-xl sm:text-2xl font-bold text-primary tracking-widest">
+      <h1 className="text-xl sm:text-2xl font-headline font-bold text-primary tracking-widest">
         ENGINEERING & REPAIR
       </h1>
       <DashboardPanel className="flex-grow">
         <ScrollArea className="h-full w-full pr-4">
             <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
             <AccordionItem value="item-1">
-                <AccordionTrigger className="text-md sm:text-lg text-primary/90">Pressure Analysis & Mobility</AccordionTrigger>
+                <AccordionTrigger className="text-md sm:text-lg font-headline text-primary/90">Pressure Analysis & Mobility</AccordionTrigger>
                 <AccordionContent className="text-foreground/80">
                     <p className="mb-4 text-sm">Based on the physical constants of Europa (Gravity (g) ~ 1.315 m/s² and Ice Density ρ ~ 930 kg/m³), here is the pressure analysis for the specified depth ranges. Drastically reducing the pressure through mobility is a key survival strategy.</p>
                     <div className="overflow-x-auto">
@@ -63,7 +63,7 @@ export function EngineeringView() {
                 </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-                <AccordionTrigger className="text-md sm:text-lg text-primary/90">Habitat Repair Technologies</AccordionTrigger>
+                <AccordionTrigger className="text-md sm:text-lg font-headline text-primary/90">Habitat Repair Technologies</AccordionTrigger>
                 <AccordionContent>
                 <Image
                       src="https://storage.googleapis.com/maker-studio-project-images-prod/project-images/d1175c57-6101-4475-a0d0-6f0a6d0c9f13/user-images/7dc0b06b-74c0-45e0-9a3b-2856f616e53c"
@@ -94,7 +94,7 @@ export function EngineeringView() {
                 </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
-                <AccordionTrigger className="text-md sm:text-lg text-primary/90">Crisis Response: Safety & Redundancy</AccordionTrigger>
+                <AccordionTrigger className="text-md sm:text-lg font-headline text-primary/90">Crisis Response: Safety & Redundancy</AccordionTrigger>
                 <AccordionContent>
                 <Image
                       src="https://storage.googleapis.com/maker-studio-project-images-prod/project-images/d1175c57-6101-4475-a0d0-6f0a6d0c9f13/user-images/cc85b8c1-155e-4c7b-b892-0b0b8e75e117"

@@ -18,7 +18,7 @@ export function BiometricsPanel() {
   return (
     <DashboardPanel delay={0.4}>
       <div className="h-full flex flex-col">
-        <h2 className="text-lg font-bold text-primary mb-4 tracking-wider">AQUA-LUNG BIOMETRICS</h2>
+        <h2 className="text-lg font-headline font-bold text-primary mb-4 tracking-wider">AQUA-LUNG BIOMETRICS</h2>
         <div className="flex flex-col xl:flex-row items-center gap-4 mb-4">
           <div className="w-full xl:w-1/2">
             <RadialChart value={biometrics.o2Saturation} label="O₂ Saturation" />
@@ -37,7 +37,7 @@ export function BiometricsPanel() {
           </div>
         </div>
         
-        <h3 className="text-md font-bold text-primary/80 mt-4 mb-2 flex items-center gap-2"><Sprout className="w-5 h-5" /> BIOMASS YIELD</h3>
+        <h3 className="text-md font-headline font-bold text-primary/80 mt-4 mb-2 flex items-center gap-2"><Sprout className="w-5 h-5" /> BIOMASS YIELD</h3>
         <div className="flex-grow rounded-md p-2 bg-black/20">
           <ul className="space-y-2">
             {crops.map((crop) => (

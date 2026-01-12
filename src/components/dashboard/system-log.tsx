@@ -99,7 +99,7 @@ export function SystemLog() {
 
   return (
     <DashboardPanel className="flex flex-col">
-      <h2 className="text-lg font-bold text-primary mb-2 tracking-wider">SYSTEM LOGS</h2>
+      <h2 className="text-lg font-headline font-bold text-primary mb-2 tracking-wider">SYSTEM LOGS</h2>
       <div ref={logContainerRef} className="flex-grow overflow-y-auto pr-2 bg-black/30 rounded-md p-2">
         <AnimatePresence initial={false}>
           {logs.map((log) => {
