@@ -14,12 +14,12 @@ export function RadialChart({ value, label }: RadialChartProps) {
     <div className="w-full h-48 relative">
       <ResponsiveContainer width="100%" height="100%">
         <RadialBarChart
-          innerRadius="70%"
+          innerRadius="80%"
           outerRadius="100%"
           data={data}
           startAngle={90}
           endAngle={-270}
-          barSize={12}
+          barSize={10}
         >
           <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false} />
           <RadialBar
@@ -31,8 +31,8 @@ export function RadialChart({ value, label }: RadialChartProps) {
           />
         </RadialBarChart>
       </ResponsiveContainer>
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-4xl font-bold text-primary/90">{value.toFixed(1)}%</span>
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+        <span className="text-3xl font-bold text-primary/90">{value.toFixed(1)}%</span>
         <span className="text-sm text-foreground/70">{label}</span>
       </div>
     </div>

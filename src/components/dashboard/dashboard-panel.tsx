@@ -4,12 +4,12 @@ import type { FC, ReactNode } from "react";
 import { motion } from "framer-motion";
 
 const Corner: FC<{ position: string }> = ({ position }) => {
-  const baseClasses = "absolute w-3 h-3 border-border";
+  const baseClasses = "absolute w-4 h-4 border-border/60 border-2";
   const positionClasses: { [key: string]: string } = {
-    "top-left": "top-1 left-1 border-t border-l",
-    "top-right": "top-1 right-1 border-t border-r",
-    "bottom-left": "bottom-1 left-1 border-b border-l",
-    "bottom-right": "bottom-1 right-1 border-b border-r",
+    "top-left": "top-2 left-2 border-t border-l",
+    "top-right": "top-2 right-2 border-t border-r",
+    "bottom-left": "bottom-2 left-2 border-b border-l",
+    "bottom-right": "bottom-2 right-2 border-b border-r",
   };
   return <div className={`${baseClasses} ${positionClasses[position]}`} />;
 };
@@ -26,7 +26,7 @@ export const DashboardPanel: FC<DashboardPanelProps> = ({ children, className = 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
-      className={`relative h-full bg-slate-900/50 backdrop-blur-md border border-border/30 rounded-lg p-4 ${className}`}
+      className={`relative h-full bg-slate-900/60 backdrop-blur-md border border-border/40 rounded-lg p-6 ${className}`}
     >
       <Corner position="top-left" />
       <Corner position="top-right" />

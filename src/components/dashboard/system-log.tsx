@@ -25,17 +25,16 @@ const logTypeStyles: { [key in LogType]: { color: string; icon: React.ReactNode 
 };
 
 const getInitialLogMessages = (): LogEntry[] => [
-    { id: 1, type: "INFO" as LogType, message: "Connecting to Oceanus Proxima telemetry stream...", timestamp: new Date().toLocaleTimeString() },
-    { id: 2, type: "SUCCESS" as LogType, message: "Bio-Firewall: SECURE", timestamp: new Date().toLocaleTimeString() },
-    { id: 3, type: "SUCCESS" as LogType, message: "Tele-robotics link: STABLE", timestamp: new Date().toLocaleTimeString() },
-    { id: 4, type: "INFO" as LogType, message: "Real-time anomaly detection armed.", timestamp: new Date().toLocaleTimeString() },
+  { id: 1, type: "INFO" as LogType, message: "Connecting to Oceanus Proxima telemetry stream...", timestamp: new Date().toLocaleTimeString() },
+  { id: 2, type: "SUCCESS" as LogType, message: "Bio-Firewall: SECURE", timestamp: new Date().toLocaleTimeString() },
+  { id: 3, type: "SUCCESS" as LogType, message: "Tele-robotics link: STABLE", timestamp: new Date().toLocaleTimeString() },
+  { id: 4, type: "INFO" as LogType, message: "Real-time anomaly detection armed.", timestamp: new Date().toLocaleTimeString() },
 ];
-
-let logIdCounter = 5;
 
 export function SystemLog() {
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const logContainerRef = useRef<HTMLDivElement>(null);
+  const logIdCounterRef = useRef(5);
   const { thermodynamics } = useSimulatedData();
   const { crisisMode } = useAppState();
 
@@ -46,7 +45,7 @@ export function SystemLog() {
   }, []);
 
   const addLog = (type: LogType, message: string) => {
-    setLogs(prev => [...prev.slice(-100), { id: logIdCounter++, type, message, timestamp: new Date().toLocaleTimeString() }]);
+    setLogs(prev => [...prev.slice(-100), { id: logIdCounterRef.current++, type, message, timestamp: new Date().toLocaleTimeString() }]);
   };
 
   useEffect(() => {
@@ -63,7 +62,7 @@ export function SystemLog() {
     const { coreA, coreB, powerOutput } = thermodynamics;
     const telemetryData = { coreATemp: coreA.toFixed(1), coreBTemp: coreB.toFixed(1), powerOutput: powerOutput.toFixed(2) };
     const historicalData = { avgCoreTemp: 600, avgPowerOutput: 18.4 };
-    
+
     try {
       const result = await detectTelemetryAnomalies({
         systemName: "Twin-Core SMR",
@@ -77,7 +76,7 @@ export function SystemLog() {
           addLog("INFO", `ACTION: ${result.suggestedActions}`);
         }
       } else if (Math.random() < 0.2) { // Occasionally log a success message
-         addLog("SUCCESS", "All systems nominal. Telemetry within expected parameters.");
+        addLog("SUCCESS", "All systems nominal. Telemetry within expected parameters.");
       }
     } catch (error) {
       console.error("Anomaly detection failed:", error);
@@ -93,8 +92,8 @@ export function SystemLog() {
 
   return (
     <DashboardPanel className="flex flex-col">
-      <h2 className="text-lg font-headline font-bold text-primary mb-2 tracking-wider">SYSTEM LOGS</h2>
-      <div ref={logContainerRef} className="flex-grow overflow-y-auto pr-2 bg-black/30 rounded-md p-2 min-h-0">
+      <h2 className="text-lg font-headline font-bold text-primary mb-3 tracking-wider">SYSTEM LOGS</h2>
+      <div ref={logContainerRef} className="flex-grow overflow-y-auto pr-2 bg-black/30 rounded-md p-3 min-h-0">
         <AnimatePresence initial={false}>
           {logs.map((log) => {
             const style = logTypeStyles[log.type];
@@ -106,10 +105,10 @@ export function SystemLog() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className={`flex items-start gap-2 text-xs mb-1 ${style.color}`}
+                className={`flex items-start gap-2 text-xs mb-1.5 ${style.color}`}
               >
                 <span className="flex-shrink-0 mt-0.5">{style.icon}</span>
-                <span className="text-foreground/50">{log.timestamp}</span>
+                <span className="text-foreground/60 font-mono">{log.timestamp}</span>
                 <p className="flex-grow min-w-0">{log.message}</p>
               </motion.div>
             );

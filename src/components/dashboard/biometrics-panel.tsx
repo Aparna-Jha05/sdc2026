@@ -14,7 +14,7 @@ const crops = [
 
 export function BiometricsPanel() {
   const { biometrics } = useSimulatedData();
-  
+
   return (
     <DashboardPanel delay={0.4}>
       <div className="h-full flex flex-col">
@@ -28,23 +28,23 @@ export function BiometricsPanel() {
               <Droplets className="w-5 h-5 text-primary" />
               <span className="font-bold text-lg">{biometrics.waterFlow.toFixed(0)} L/hr</span>
             </div>
-            <p className="text-xs text-foreground/70">WATER RECYCLED</p>
+            <p className="text-xs text-foreground/80">WATER RECYCLED</p>
             <div className="flex items-center justify-center xl:justify-start gap-2 mt-2">
               <Wind className="w-5 h-5 text-primary" />
               <span className="font-bold text-lg">ACTIVE</span>
             </div>
-            <p className="text-xs text-foreground/70">ATMOSPHERE SCRUBBERS</p>
+            <p className="text-xs text-foreground/80">ATMOSPHERE SCRUBBERS</p>
           </div>
         </div>
-        
-        <h3 className="text-md font-headline font-bold text-primary/80 mt-4 mb-2 flex items-center gap-2"><Sprout className="w-5 h-5" /> BIOMASS YIELD</h3>
-        <div className="flex-grow rounded-md p-2 bg-black/20">
+
+        <h3 className="text-md font-headline font-bold text-primary/80 mt-4 mb-3 flex items-center gap-2"><Sprout className="w-5 h-5" /> BIOMASS YIELD</h3>
+        <div className="flex-grow rounded-md p-3 bg-black/30">
           <ul className="space-y-2">
             {crops.map((crop) => (
               <li key={crop.name} className="flex justify-between items-center text-sm">
                 <span>{crop.name}</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-foreground/70">{crop.status}</span>
+                  <span className="text-foreground/80">{crop.status}</span>
                   <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_4px_theme(colors.green.400)]" />
                 </div>
               </li>

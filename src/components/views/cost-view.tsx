@@ -39,54 +39,74 @@ export function CostView() {
       <h1 className="text-xl sm:text-2xl font-headline font-bold text-primary tracking-widest">
         PROJECT COST ANALYSIS
       </h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-grow min-h-0">
-        <div className="lg:col-span-1 flex flex-col min-h-0">
-            <DashboardPanel className="flex-grow flex flex-col">
-                <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4 shrink-0">COST vs. VULNERABILITY</h2>
-                <div className="flex-grow min-h-0">
-                  <ScrollArea className="h-full pr-4 -mr-4">
-                    <Table>
-                        <TableHeader>
-                        <TableRow>
-                            <TableHead>System Component</TableHead>
-                            <TableHead className="text-right">Cost</TableHead>
-                            <TableHead className="text-center">Vulnerability</TableHead>
-                        </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                        {costData.map((row) => (
-                            <TableRow key={row.component}>
-                            <TableCell className="font-medium text-foreground/90 text-xs sm:text-sm">{row.component}</TableCell>
-                            <TableCell className="text-right font-mono text-foreground/80 text-xs sm:text-sm">{row.cost}</TableCell>
-                            <TableCell className="text-center">
-                                <Badge
-                                variant="outline"
-                                className={cn("font-bold text-xs", vulnerabilityStyles[row.vulnerability])}
-                                >
-                                {row.vulnerability}
-                                </Badge>
-                            </TableCell>
-                            </TableRow>
-                        ))}
-                        </TableBody>
-                    </Table>
-                  </ScrollArea>
-                </div>
-            </DashboardPanel>
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 flex-grow min-h-0">
+        {/* Left Column - Cost Table */}
+        <div className="xl:col-span-1 flex flex-col min-h-0">
+          <DashboardPanel className="flex-grow flex flex-col">
+            <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4 shrink-0">COST vs. VULNERABILITY</h2>
+            <div className="flex-grow min-h-0">
+              <ScrollArea className="h-full pr-4 -mr-4">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="border-border/50">
+                      <TableHead className="text-foreground/90">System Component</TableHead>
+                      <TableHead className="text-right text-foreground/90 min-w-[100px]">Cost</TableHead>
+                      <TableHead className="text-center text-foreground/90 min-w-[120px]">Vulnerability</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {costData.map((row) => (
+                      <TableRow key={row.component} className="border-border/40">
+                        <TableCell className="font-medium text-foreground/90 text-xs sm:text-sm">{row.component}</TableCell>
+                        <TableCell className="text-right font-mono text-foreground/80 text-xs sm:text-sm whitespace-nowrap">{row.cost}</TableCell>
+                        <TableCell className="text-center">
+                          <Badge
+                            variant="outline"
+                            className={cn("font-bold text-xs", vulnerabilityStyles[row.vulnerability])}
+                          >
+                            {row.vulnerability}
+                          </Badge>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </ScrollArea>
+            </div>
+          </DashboardPanel>
         </div>
-        <div className="lg:col-span-1 flex flex-col min-h-0">
-            <DashboardPanel className="flex-grow flex flex-col">
-              <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4 shrink-0">PROJECT COST BREAKDOWN</h2>
-              <div className="flex-grow min-h-0 relative">
-                <Image
-                    src="/barchart.png"
-                    alt="Oceanus Proxima Project Cost Breakdown"
-                    fill
-                    className="object-contain"
-                    data-ai-hint="cost breakdown chart"
-                />
-                </div>
-            </DashboardPanel>
+
+        {/* Right Column - Cost Visualizations */}
+        <div className="xl:col-span-2 flex flex-col gap-4 min-h-0">
+          {/* Cost Overview Image */}
+          <DashboardPanel className="flex-grow flex flex-col min-h-[300px]">
+            <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4 shrink-0">COMPREHENSIVE COST ANALYSIS</h2>
+            <div className="flex-grow min-h-[250px] relative w-full">
+              <Image
+                src="/cost.png"
+                alt="Oceanus Proxima Comprehensive Cost Analysis"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 66vw, 50vw"
+                className="object-contain"
+                data-ai-hint="comprehensive cost analysis"
+              />
+            </div>
+          </DashboardPanel>
+
+          {/* Cost Breakdown Chart */}
+          <DashboardPanel className="flex-grow flex flex-col min-h-[300px]">
+            <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4 shrink-0">PROJECT COST BREAKDOWN</h2>
+            <div className="flex-grow min-h-[250px] relative w-full">
+              <Image
+                src="/barchart.png"
+                alt="Oceanus Proxima Project Cost Breakdown"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 66vw, 50vw"
+                className="object-contain"
+                data-ai-hint="cost breakdown chart"
+              />
+            </div>
+          </DashboardPanel>
         </div>
       </div>
     </div>
