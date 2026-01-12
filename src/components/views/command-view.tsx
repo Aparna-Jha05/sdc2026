@@ -17,7 +17,7 @@ export function CommandView() {
           <DashboardPanel delay={0.2}>
             <div className="h-full flex flex-col items-center justify-center">
               <h2 className="text-base sm:text-lg font-headline font-bold text-primary mb-2 sm:mb-4 tracking-wider">HABITAT DIGITAL TWIN</h2>
-              <div className="w-full h-full flex items-center justify-center p-4">
+              <div className="w-full flex-1 flex items-center justify-center p-4 min-h-0">
                 <DigitalTwinDiagram />
               </div>
             </div>
