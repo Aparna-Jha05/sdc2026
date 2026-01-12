@@ -64,10 +64,10 @@ export function EngineeringView() {
                 <AccordionTrigger className="text-lg text-primary/90">Habitat Repair Technologies (Deep Sea & Aerospace Adaptation)</AccordionTrigger>
                 <AccordionContent>
                 <Image
-                      src="https://picsum.photos/seed/repair/1200/400"
+                      src="https://storage.googleapis.com/maker-studio-project-images-prod/project-images/d1175c57-6101-4475-a0d0-6f0a6d0c9f13/user-images/0f11122a-3532-494b-bf42-99572b9a7f34"
                       alt="Habitat Repair Technologies"
                       width={1200}
-                      height={400}
+                      height={493}
                       className="w-full rounded-lg mb-4"
                       data-ai-hint="diagram technology"
                     />
@@ -95,10 +95,10 @@ export function EngineeringView() {
                 <AccordionTrigger className="text-lg text-primary/90">Crisis Response: Safety & Redundancy</AccordionTrigger>
                 <AccordionContent>
                 <Image
-                      src="https://picsum.photos/seed/crisis/1200/400"
+                      src="https://storage.googleapis.com/maker-studio-project-images-prod/project-images/d1175c57-6101-4475-a0d0-6f0a6d0c9f13/user-images/611a14c6-a60d-4560-a292-628f237f3747"
                       alt="Crisis Response Systems"
                       width={1200}
-                      height={400}
+                      height={734}
                       className="w-full rounded-lg mb-4"
                       data-ai-hint="blueprint systems"
                     />
@@ -141,5 +141,3 @@ export function EngineeringView() {
     </div>
   );
 }
-
-    
