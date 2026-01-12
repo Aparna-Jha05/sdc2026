@@ -32,7 +32,7 @@ export const DashboardPanel: FC<DashboardPanelProps> = ({ children, className = 
       <Corner position="top-right" />
       <Corner position="bottom-left" />
       <Corner position="bottom-right" />
-      <div className="h-full w-full">{children}</div>
+      <div className="h-full w-full overflow-y-auto">{children}</div>
     </motion.div>
   );
 };

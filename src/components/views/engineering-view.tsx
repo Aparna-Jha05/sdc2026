@@ -17,6 +17,10 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
 
 
 const pressureData = [
@@ -60,6 +64,10 @@ export function EngineeringView() {
                                             ))}
                                         </TableBody>
                                     </Table>
+                                </div>
+                                <div className="mt-6 p-4 bg-secondary/20 rounded-lg border border-border/50">
+                                    <h4 className="font-bold text-primary mb-4">Interactive Depth Calculator</h4>
+                                    <DepthCalculator />
                                 </div>
                             </AccordionContent>
                         </AccordionItem>
@@ -143,4 +151,56 @@ export function EngineeringView() {
             </DashboardPanel>
         </div>
     );
+}
+
+function DepthCalculator() {
+    const [depth, setDepth] = useState<number>(10); // km
+
+    const g = 1.315; // m/s^2
+    const rho = 1000; // kg/m^3 (approx liquid water)
+
+    // P = rho * g * h
+    // h in meters = depth * 1000
+    // P in Pascals = rho * g * (depth * 1000)
+    // P in MPa = P / 1,000,000
+    const pressureMPa = (rho * g * (depth * 1000)) / 1000000;
+    const pressureBar = pressureMPa * 10;
+
+    // Earth equivalent: P_earth = rho_earth * g_earth * h_earth
+    // h_earth = P / (rho_earth * g_earth)
+    // rho_earth ~ 1025, g_earth ~ 9.81
+    const earthDepth = (pressureMPa * 1000000) / (1025 * 9.81);
+
+    return (
+        <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
+                <div className="flex justify-between">
+                    <Label>Depth Assessment</Label>
+                    <span className="font-mono text-cyan-400">{depth.toFixed(1)} km</span>
+                </div>
+                <Slider
+                    value={[depth]}
+                    max={100}
+                    step={0.1}
+                    onValueChange={(val) => setDepth(val[0])}
+                    className="py-2"
+                />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="p-3 bg-secondary/40 rounded border border-border/30">
+                    <div className="text-xs text-foreground/60 uppercase">Calculated Pressure</div>
+                    <div className="text-xl font-mono font-bold text-primary">{pressureMPa.toFixed(2)} MPa</div>
+                </div>
+                <div className="p-3 bg-secondary/40 rounded border border-border/30">
+                    <div className="text-xs text-foreground/60 uppercase">Bar Equivalent</div>
+                    <div className="text-xl font-mono font-bold text-primary">{pressureBar.toFixed(1)} bar</div>
+                </div>
+                <div className="p-3 bg-secondary/40 rounded border border-border/30">
+                    <div className="text-xs text-foreground/60 uppercase">Earth Ocean Depth Equivalent</div>
+                    <div className="text-xl font-mono font-bold text-primary">~{Math.round(earthDepth)} m</div>
+                </div>
+            </div>
+        </div>
+    )
 }
