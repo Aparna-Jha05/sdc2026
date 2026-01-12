@@ -64,11 +64,12 @@ export function EngineeringView() {
                 <AccordionTrigger className="text-lg text-primary/90">Habitat Repair Technologies (Deep Sea & Aerospace Adaptation)</AccordionTrigger>
                 <AccordionContent>
                 <Image
-                      src="/habitat-repair.png"
+                      src="https://picsum.photos/seed/repair/1200/400"
                       alt="Habitat Repair Technologies"
                       width={1200}
                       height={400}
                       className="w-full rounded-lg mb-4"
+                      data-ai-hint="diagram technology"
                     />
                     <div className="space-y-6 text-foreground/80">
                         <div>
@@ -94,11 +95,12 @@ export function EngineeringView() {
                 <AccordionTrigger className="text-lg text-primary/90">Crisis Response: Safety & Redundancy</AccordionTrigger>
                 <AccordionContent>
                 <Image
-                      src="/crisis-response.png"
+                      src="https://picsum.photos/seed/crisis/1200/400"
                       alt="Crisis Response Systems"
                       width={1200}
                       height={400}
                       className="w-full rounded-lg mb-4"
+                      data-ai-hint="blueprint systems"
                     />
                     <div className="space-y-6 text-foreground/80">
                         <div>
