@@ -4,6 +4,7 @@ import { DashboardPanel } from "@/components/dashboard/dashboard-panel";
 import { BatteryFull, Thermometer } from "lucide-react";
 import { useSimulatedNumber } from "@/lib/hooks";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const RadarGrid = () => {
     return (
@@ -43,24 +44,24 @@ const RadarGrid = () => {
     );
   };
   
-const RoverStatus = ({ name, color }: { name: string, color: string }) => {
+const RoverStatus = ({ name, colorClass }: { name: string, colorClass: string }) => {
     const battery = useSimulatedNumber(95, 10, 5000, 0, 100);
     const drillTemp = useSimulatedNumber(150, 25, 3000, 120, 300);
 
     return (
         <DashboardPanel>
-            <h3 className={`font-headline font-bold text-md mb-3 text-${color}-400`}>ROVER {name}</h3>
+            <h3 className={cn(`font-headline font-bold text-md mb-3`, colorClass)}>{`ROVER ${name}`}</h3>
             <div className="space-y-3 text-sm">
                 <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                        <BatteryFull className={`w-5 h-5 text-${color}-400/80`} />
+                        <BatteryFull className={cn("w-5 h-5", colorClass)} />
                         <span>Battery</span>
                     </div>
                     <span className="font-mono">{battery.toFixed(0)}%</span>
                 </div>
                 <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                        <Thermometer className={`w-5 h-5 text-${color}-400/80`} />
+                        <Thermometer className={cn("w-5 h-5", colorClass)} />
                         <span>Drill Temp</span>
                     </div>
                     <span className="font-mono">{drillTemp.toFixed(0)}°C</span>
@@ -89,25 +90,23 @@ const VideoFeed = () => {
 
 export function ExteriorView() {
   return (
-    <div className="h-full flex flex-col gap-4">
+    <div className="h-full w-full flex flex-col gap-4">
       <h1 className="text-xl sm:text-2xl font-headline font-bold text-primary tracking-widest shrink-0">EXTERIOR TELE-ROBOTICS</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 flex-grow min-h-0">
         <div className="lg:col-span-2 flex flex-col min-h-0">
-          <DashboardPanel className="flex-grow">
-            <div className="h-full flex flex-col">
-                <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-2 shrink-0">SURFACE RADAR GRID</h2>
-                <div className="flex-grow min-h-0">
-                    <RadarGrid />
-                </div>
-            </div>
+          <DashboardPanel className="flex-grow flex flex-col">
+              <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-2 shrink-0">SURFACE RADAR GRID</h2>
+              <div className="flex-grow min-h-0">
+                  <RadarGrid />
+              </div>
           </DashboardPanel>
         </div>
         <div className="flex flex-col gap-4">
-            <RoverStatus name="ALPHA" color="green" />
-            <RoverStatus name="BETA" color="amber" />
+            <RoverStatus name="ALPHA" colorClass="text-green-400" />
+            <RoverStatus name="BETA" colorClass="text-amber-400" />
         </div>
       </div>
-      <div className="h-48 xl:h-64 shrink-0 flex flex-col">
+      <div className="h-48 xl:h-64 shrink-0">
         <VideoFeed />
       </div>
     </div>

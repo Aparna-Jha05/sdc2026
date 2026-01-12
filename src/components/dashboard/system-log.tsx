@@ -24,11 +24,11 @@ const logTypeStyles: { [key in LogType]: { color: string; icon: React.ReactNode 
   CRITICAL: { color: "text-red-500", icon: <AlertTriangle className="w-3.5 h-3.5" /> },
 };
 
-const initialLogMessages = [
-    { id: 1, type: "INFO" as LogType, message: "Connecting to Oceanus Proxima telemetry stream..." },
-    { id: 2, type: "SUCCESS" as LogType, message: "Bio-Firewall: SECURE" },
-    { id: 3, type: "SUCCESS" as LogType, message: "Tele-robotics link: STABLE" },
-    { id: 4, type: "INFO" as LogType, message: "Real-time anomaly detection armed." },
+const getInitialLogMessages = (): LogEntry[] => [
+    { id: 1, type: "INFO" as LogType, message: "Connecting to Oceanus Proxima telemetry stream...", timestamp: new Date().toLocaleTimeString() },
+    { id: 2, type: "SUCCESS" as LogType, message: "Bio-Firewall: SECURE", timestamp: new Date().toLocaleTimeString() },
+    { id: 3, type: "SUCCESS" as LogType, message: "Tele-robotics link: STABLE", timestamp: new Date().toLocaleTimeString() },
+    { id: 4, type: "INFO" as LogType, message: "Real-time anomaly detection armed.", timestamp: new Date().toLocaleTimeString() },
 ];
 
 let logIdCounter = 5;
@@ -41,13 +41,7 @@ export function SystemLog() {
 
   useEffect(() => {
     // This effect runs only on the client after hydration
-    if (logs.length === 0) {
-      const clientInitialLogs = initialLogMessages.map(log => ({
-        ...log,
-        timestamp: new Date().toLocaleTimeString(),
-      }));
-      setLogs(clientInitialLogs);
-    }
+    setLogs(getInitialLogMessages());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -100,7 +94,7 @@ export function SystemLog() {
   return (
     <DashboardPanel className="flex flex-col">
       <h2 className="text-lg font-headline font-bold text-primary mb-2 tracking-wider">SYSTEM LOGS</h2>
-      <div ref={logContainerRef} className="flex-grow overflow-y-auto pr-2 bg-black/30 rounded-md p-2">
+      <div ref={logContainerRef} className="flex-grow overflow-y-auto pr-2 bg-black/30 rounded-md p-2 min-h-0">
         <AnimatePresence initial={false}>
           {logs.map((log) => {
             const style = logTypeStyles[log.type];
@@ -116,7 +110,7 @@ export function SystemLog() {
               >
                 <span className="flex-shrink-0 mt-0.5">{style.icon}</span>
                 <span className="text-foreground/50">{log.timestamp}</span>
-                <p className="flex-grow">{log.message}</p>
+                <p className="flex-grow min-w-0">{log.message}</p>
               </motion.div>
             );
           })}

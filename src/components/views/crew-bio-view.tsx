@@ -37,7 +37,7 @@ const CrewCard = ({ member }: { member: typeof crewData[0] }) => {
           <p className="text-foreground/60 text-[10px] sm:text-xs">BPM</p>
         </div>
         <div className={cn(isRadHigh && "text-destructive")}>
-          <Radiation className="w-5 h-5 mx-auto text-primary/70 mb-1" />
+          <Radiation className="w-5 h-5 mx-auto mb-1" color={isRadHigh ? 'hsl(var(--destructive))' : 'hsl(var(--primary)/0.7)'} />
           <p className="font-bold text-base sm:text-lg">{radiation.toFixed(2)}</p>
           <p className="text-foreground/60 text-[10px] sm:text-xs">mSv</p>
         </div>
@@ -103,10 +103,10 @@ const Heatmap = () => {
 
 export function CrewBioView() {
   return (
-    <div className="h-full flex flex-col gap-4">
-      <h1 className="text-xl sm:text-2xl font-headline font-bold text-primary tracking-widest">CREW & BIOMETRICS</h1>
+    <div className="h-full w-full flex flex-col gap-4">
+      <h1 className="text-xl sm:text-2xl font-headline font-bold text-primary tracking-widest shrink-0">CREW & BIOMETRICS</h1>
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 flex-grow min-h-0">
-        <div className="xl:col-span-2 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 min-h-0">
+        <div className="xl:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 min-h-0">
           {crewData.map((member) => (
             <div key={member.id} className="min-h-[170px] sm:min-h-[150px] flex flex-col">
                 <CrewCard member={member} />
@@ -114,13 +114,11 @@ export function CrewBioView() {
           ))}
         </div>
         <div className="min-h-[40vh] xl:min-h-0 flex flex-col">
-            <DashboardPanel className="flex-grow">
-                <div className="h-full flex flex-col">
-                    <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-2">STRESS HEATMAP</h2>
-                    <p className="text-xs text-foreground/60 mb-4">Real-time audio-visual stress indicators.</p>
-                    <div className="flex-grow min-h-0">
-                        <Heatmap />
-                    </div>
+            <DashboardPanel className="flex-grow flex flex-col">
+                <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-2 shrink-0">STRESS HEATMAP</h2>
+                <p className="text-xs text-foreground/60 mb-4 shrink-0">Real-time audio-visual stress indicators.</p>
+                <div className="flex-grow min-h-0">
+                    <Heatmap />
                 </div>
             </DashboardPanel>
         </div>
