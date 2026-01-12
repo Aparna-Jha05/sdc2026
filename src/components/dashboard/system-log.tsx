@@ -48,6 +48,7 @@ export function SystemLog() {
       }));
       setLogs(clientInitialLogs);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addLog = (type: LogType, message: string) => {
@@ -92,7 +93,7 @@ export function SystemLog() {
 
   useEffect(() => {
     if (logContainerRef.current) {
-      logContainerRef.current.scrollTop = logContainerref.current.scrollHeight;
+      logContainerRef.current.scrollTop = logContainerRef.current.scrollHeight;
     }
   }, [logs]);
 
