@@ -23,7 +23,7 @@ export default function RootLayout({
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
         </head>
-        <body className="font-headline antialiased bg-background text-foreground/90">
+        <body className="font-headline antialiased bg-background text-foreground/90 overflow-hidden h-screen">
           <Image
             src="https://img.freepik.com/premium-vector/vector-illustration-water-surface-texture_888509-449.jpg"
             alt="Water texture background"
@@ -31,7 +31,9 @@ export default function RootLayout({
             objectFit="cover"
             className="fixed inset-0 w-full h-full -z-10 opacity-20 blur-sm"
           />
-          {children}
+          <div className="h-full overflow-auto">
+            {children}
+          </div>
           <Toaster />
           <CrisisAlertModal />
         </body>
