@@ -1,8 +1,9 @@
 import { GlobalHeader } from '@/components/dashboard/global-header';
-import { DigitalTwin } from '@/components/dashboard/digital-twin';
 import { ThermodynamicsPanel } from '@/components/dashboard/thermodynamics-panel';
 import { BiometricsPanel } from '@/components/dashboard/biometrics-panel';
 import { SystemLog } from '@/components/dashboard/system-log';
+import { DashboardPanel } from '../dashboard/dashboard-panel';
+import { DigitalTwinDiagram } from '../dashboard/digital-twin-diagram';
 
 export function CommandView() {
   return (
@@ -13,7 +14,14 @@ export function CommandView() {
           <ThermodynamicsPanel />
         </div>
         <div className="lg:col-span-6 min-h-[50vh] lg:min-h-0">
-          <DigitalTwin />
+          <DashboardPanel delay={0.2}>
+            <div className="h-full flex flex-col items-center justify-center">
+              <h2 className="text-lg font-bold text-primary mb-4 tracking-wider">HABITAT DIGITAL TWIN</h2>
+              <div className="w-full h-full flex items-center justify-center">
+                <DigitalTwinDiagram />
+              </div>
+            </div>
+          </DashboardPanel>
         </div>
         <div className="lg:col-span-3 min-h-[50vh] lg:min-h-0">
           <BiometricsPanel />

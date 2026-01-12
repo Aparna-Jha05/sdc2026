@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { AppStateProvider } from '@/context/app-state-context';
 import { CrisisAlertModal } from '@/components/crisis-alert-modal';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Oceanus Proxima Mission Control',
@@ -23,6 +24,13 @@ export default function RootLayout({
           <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
         </head>
         <body className="font-headline antialiased bg-background text-foreground/90">
+          <Image
+            src="https://img.freepik.com/premium-vector/vector-illustration-water-surface-texture_888509-449.jpg"
+            alt="Water texture background"
+            layout="fill"
+            objectFit="cover"
+            className="fixed inset-0 w-full h-full -z-10 opacity-20 blur-sm"
+          />
           {children}
           <Toaster />
           <CrisisAlertModal />
