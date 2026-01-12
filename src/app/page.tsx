@@ -3,11 +3,12 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { Command, Users, Package, Sliders, AlertTriangle } from 'lucide-react';
+import { Command, BookOpen, Users, Package, Sliders, AlertTriangle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAppState } from '@/context/app-state-context';
 
 import { CommandView } from '@/components/views/command-view';
+import { EngineeringView } from '@/components/views/engineering-view';
 import { CrewBioView } from '@/components/views/crew-bio-view';
 import { LogisticsView } from '@/components/views/logistics-view';
 import { ExteriorView } from '@/components/views/exterior-view';
@@ -15,6 +16,7 @@ import { SimulationView } from '@/components/views/simulation-view';
 
 const navItems = [
   { id: 'command', label: 'COMMAND', icon: Command, component: CommandView },
+  { id: 'engineering', label: 'ENGINEERING', icon: BookOpen, component: EngineeringView },
   { id: 'crew-bio', label: 'CREW & BIO', icon: Users, component: CrewBioView },
   { id: 'logistics', label: 'LOGISTICS', icon: Package, component: LogisticsView },
   { id: 'exterior', label: 'EXTERIOR', icon: Sliders, component: ExteriorView },
