@@ -139,10 +139,10 @@ export function LogisticsView() {
     <div className="h-full flex flex-col gap-4">
       <h1 className="text-xl sm:text-2xl font-headline font-bold text-primary tracking-widest shrink-0">LOGISTICS & ISRU</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-grow min-h-0">
-        <div className="min-h-[50vh] md:min-h-0">
+        <div className="min-h-[50vh] md:min-h-0 flex flex-col">
           <IsruFoundryQueue />
         </div>
-        <div className="min-h-[50vh] md:min-h-0">
+        <div className="min-h-[50vh] md:min-h-0 flex flex-col">
           <InventoryLevels />
         </div>
       </div>

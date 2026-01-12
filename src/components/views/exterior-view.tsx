@@ -92,8 +92,8 @@ export function ExteriorView() {
     <div className="h-full flex flex-col gap-4">
       <h1 className="text-xl sm:text-2xl font-headline font-bold text-primary tracking-widest shrink-0">EXTERIOR TELE-ROBOTICS</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 flex-grow min-h-0">
-        <div className="lg:col-span-2 min-h-[50vh] lg:min-h-0">
-          <DashboardPanel>
+        <div className="lg:col-span-2 flex flex-col min-h-0">
+          <DashboardPanel className="flex-grow">
             <div className="h-full flex flex-col">
                 <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-2 shrink-0">SURFACE RADAR GRID</h2>
                 <div className="flex-grow min-h-0">
@@ -107,7 +107,7 @@ export function ExteriorView() {
             <RoverStatus name="BETA" color="amber" />
         </div>
       </div>
-      <div className="h-48 xl:h-64 shrink-0 min-h-[192px]">
+      <div className="h-48 xl:h-64 shrink-0 flex flex-col">
         <VideoFeed />
       </div>
     </div>

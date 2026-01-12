@@ -108,13 +108,13 @@ export function CrewBioView() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 flex-grow min-h-0">
         <div className="xl:col-span-2 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 min-h-0">
           {crewData.map((member) => (
-            <div key={member.id} className="min-h-[150px] sm:min-h-0">
+            <div key={member.id} className="min-h-[170px] sm:min-h-[150px] flex flex-col">
                 <CrewCard member={member} />
             </div>
           ))}
         </div>
-        <div className="min-h-[40vh] xl:min-h-0">
-            <DashboardPanel>
+        <div className="min-h-[40vh] xl:min-h-0 flex flex-col">
+            <DashboardPanel className="flex-grow">
                 <div className="h-full flex flex-col">
                     <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-2">STRESS HEATMAP</h2>
                     <p className="text-xs text-foreground/60 mb-4">Real-time audio-visual stress indicators.</p>
