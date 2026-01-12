@@ -44,7 +44,7 @@ export function CostView() {
             <DashboardPanel>
                 <div className="h-full w-full flex flex-col">
                   <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4">COST vs. VULNERABILITY</h2>
-                  <ScrollArea className="flex-grow">
+                  <ScrollArea className="flex-grow pr-4">
                     <Table>
                         <TableHeader>
                         <TableRow>
@@ -76,17 +76,19 @@ export function CostView() {
         </div>
         <div className="lg:col-span-1 min-h-[50vh] lg:min-h-0">
             <DashboardPanel>
+              <div className="h-full w-full flex flex-col">
                 <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4">PROJECT COST BREAKDOWN</h2>
-                <div className="flex items-center justify-center h-full">
-                    <Image
-                        src="/barchart.png"
-                        alt="Oceanus Proxima Project Cost Breakdown"
-                        width={1024}
-                        height={463}
-                        className="w-full h-auto object-contain"
-                        data-ai-hint="cost breakdown chart"
-                    />
-                </div>
+                <ScrollArea className="flex-grow">
+                  <Image
+                      src="/barchart.png"
+                      alt="Oceanus Proxima Project Cost Breakdown"
+                      width={1024}
+                      height={463}
+                      className="w-full h-auto object-contain"
+                      data-ai-hint="cost breakdown chart"
+                  />
+                  </ScrollArea>
+              </div>
             </DashboardPanel>
         </div>
       </div>

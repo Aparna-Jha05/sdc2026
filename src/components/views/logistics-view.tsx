@@ -1,3 +1,4 @@
+
 "use client";
 import { useState } from 'react';
 import { DashboardPanel } from "@/components/dashboard/dashboard-panel";
@@ -5,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Printer, Package, AlertTriangle } from "lucide-react";
 import { useInterval } from '@/lib/hooks';
+import { ScrollArea } from '../ui/scroll-area';
 
 interface PrintItem {
   id: number;
@@ -40,18 +42,20 @@ const IsruFoundryQueue = () => {
             <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4 flex items-center gap-2">
                 <Printer /> ISRU FOUNDRY
             </h2>
-            <div className="flex-grow space-y-4 overflow-y-auto pr-2">
-                {queue.map(item => (
-                    <div key={item.id}>
-                        <div className="flex justify-between items-center mb-1 text-sm">
-                            <span>{item.name}</span>
-                            <span className="font-mono">{item.progress.toFixed(0)}%</span>
+            <ScrollArea className="flex-grow pr-2">
+                <div className="space-y-4">
+                    {queue.map(item => (
+                        <div key={item.id}>
+                            <div className="flex justify-between items-center mb-1 text-sm">
+                                <span>{item.name}</span>
+                                <span className="font-mono">{item.progress.toFixed(0)}%</span>
+                            </div>
+                            <Progress value={item.progress} className="h-2" />
                         </div>
-                        <Progress value={item.progress} className="h-2" />
-                    </div>
-                ))}
-                {queue.length === 0 && <p className="text-foreground/60 text-sm text-center py-8">Print queue is empty.</p>}
-            </div>
+                    ))}
+                    {queue.length === 0 && <p className="text-foreground/60 text-sm text-center py-8">Print queue is empty.</p>}
+                </div>
+            </ScrollArea>
             <Button variant="destructive" className="w-full mt-4" onClick={addEmergencyPrint}>
                 <AlertTriangle className="mr-2" />
                 Emergency Print: Hull Patch
@@ -64,38 +68,63 @@ const IsruFoundryQueue = () => {
 const InventoryLevels = () => {
     return (
         <DashboardPanel>
-            <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4 flex items-center gap-2">
-                <Package /> INVENTORY
-            </h2>
-            <div className="space-y-5">
-                <div>
-                    <div className="flex justify-between text-sm mb-1">
-                        <span>Raw Plastic Filament</span>
-                        <span>82%</span>
+            <div className="h-full flex flex-col">
+                <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4 flex items-center gap-2">
+                    <Package /> INVENTORY
+                </h2>
+                <ScrollArea className='pr-2'>
+                    <div className="space-y-5">
+                        <div>
+                            <div className="flex justify-between text-sm mb-1">
+                                <span>Raw Plastic Filament</span>
+                                <span>82%</span>
+                            </div>
+                            <Progress value={82} />
+                        </div>
+                        <div>
+                            <div className="flex justify-between text-sm mb-1">
+                                <span>Refined Titanium Alloy</span>
+                                <span>65%</span>
+                            </div>
+                            <Progress value={65} />
+                        </div>
+                        <div>
+                            <div className="flex justify-between text-sm mb-1">
+                                <span>Spare O₂ Scrubber Units</span>
+                                <span>40%</span>
+                            </div>
+                            <Progress value={40} className="[&>div]:bg-amber-500" />
+                        </div>
+                        <div>
+                            <div className="flex justify-between text-sm mb-1">
+                                <span>Nutrient Paste Stock</span>
+                                <span>95%</span>
+                            </div>
+                            <Progress value={95} />
+                        </div>
+                        <div>
+                            <div className="flex justify-between text-sm mb-1">
+                                <span>Medical Supplies</span>
+                                <span>78%</span>
+                            </div>
+                            <Progress value={78} />
+                        </div>
+                        <div>
+                            <div className="flex justify-between text-sm mb-1">
+                                <span>Rover Spare Parts</span>
+                                <span>33%</span>
+                            </div>
+                            <Progress value={33} className="[&>div]:bg-amber-500"/>
+                        </div>
+                         <div>
+                            <div className="flex justify-between text-sm mb-1">
+                                <span>Water Reserves</span>
+                                <span>89%</span>
+                            </div>
+                            <Progress value={89} />
+                        </div>
                     </div>
-                    <Progress value={82} />
-                </div>
-                <div>
-                    <div className="flex justify-between text-sm mb-1">
-                        <span>Refined Titanium Alloy</span>
-                        <span>65%</span>
-                    </div>
-                    <Progress value={65} />
-                </div>
-                <div>
-                    <div className="flex justify-between text-sm mb-1">
-                        <span>Spare O₂ Scrubber Units</span>
-                        <span>40%</span>
-                    </div>
-                    <Progress value={40} className="[&>div]:bg-amber-500" />
-                </div>
-                 <div>
-                    <div className="flex justify-between text-sm mb-1">
-                        <span>Nutrient Paste Stock</span>
-                        <span>95%</span>
-                    </div>
-                    <Progress value={95} />
-                </div>
+                </ScrollArea>
             </div>
         </DashboardPanel>
     )
