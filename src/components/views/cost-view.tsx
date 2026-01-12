@@ -1,3 +1,4 @@
+
 "use client";
 
 import { DashboardPanel } from "@/components/dashboard/dashboard-panel";
@@ -78,7 +79,7 @@ export function CostView() {
                 <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4">PROJECT COST BREAKDOWN</h2>
                 <div className="flex items-center justify-center h-full">
                     <Image
-                        src="https://storage.googleapis.com/maker-studio-project-images-prod/project-images/d1175c57-6101-4475-a0d0-6f0a6d0c9f13/user-images/6d31215b-9ecb-4395-8854-8e11e8601248"
+                        src="/barchart.png"
                         alt="Oceanus Proxima Project Cost Breakdown"
                         width={1024}
                         height={463}
