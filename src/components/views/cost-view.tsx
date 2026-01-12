@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const costData = [
   { component: "Structural Architecture", cost: "15,354 Cr", vulnerability: "HIGH" },
@@ -34,37 +35,57 @@ export function CostView() {
   return (
     <div className="h-full flex flex-col gap-4">
       <h1 className="text-2xl font-bold text-primary tracking-widest">
-        SYSTEM COST vs. CRISIS VULNERABILITY
+        PROJECT COST ANALYSIS
       </h1>
-      <DashboardPanel className="flex-grow">
-        <div className="h-full w-full overflow-auto">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="text-lg">System Component</TableHead>
-                <TableHead className="text-right text-lg">Cost (₹ Crores)</TableHead>
-                <TableHead className="text-center text-lg">Vulnerability to Crisis</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {costData.map((row) => (
-                <TableRow key={row.component}>
-                  <TableCell className="font-medium text-base text-foreground/90">{row.component}</TableCell>
-                  <TableCell className="text-right font-mono text-base text-foreground/80">{row.cost}</TableCell>
-                  <TableCell className="text-center">
-                    <Badge
-                      variant="outline"
-                      className={cn("text-sm font-bold", vulnerabilityStyles[row.vulnerability])}
-                    >
-                      {row.vulnerability}
-                    </Badge>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-grow min-h-0">
+        <div className="lg:col-span-1 min-h-[50vh] lg:min-h-0">
+            <DashboardPanel>
+                <h2 className="text-lg font-bold text-primary mb-4">COST vs. CRISIS VULNERABILITY</h2>
+                <div className="h-full w-full overflow-auto">
+                <Table>
+                    <TableHeader>
+                    <TableRow>
+                        <TableHead>System Component</TableHead>
+                        <TableHead className="text-right">Cost (₹ Cr)</TableHead>
+                        <TableHead className="text-center">Vulnerability</TableHead>
+                    </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                    {costData.map((row) => (
+                        <TableRow key={row.component}>
+                        <TableCell className="font-medium text-foreground/90">{row.component}</TableCell>
+                        <TableCell className="text-right font-mono text-foreground/80">{row.cost}</TableCell>
+                        <TableCell className="text-center">
+                            <Badge
+                            variant="outline"
+                            className={cn("font-bold", vulnerabilityStyles[row.vulnerability])}
+                            >
+                            {row.vulnerability}
+                            </Badge>
+                        </TableCell>
+                        </TableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+                </div>
+            </DashboardPanel>
         </div>
-      </DashboardPanel>
+        <div className="lg:col-span-1 min-h-[50vh] lg:min-h-0">
+            <DashboardPanel>
+                <h2 className="text-lg font-bold text-primary mb-4">PROJECT COST BREAKDOWN</h2>
+                <div className="flex items-center justify-center h-full">
+                    <Image
+                        src="https://storage.googleapis.com/maker-studio-project-images-prod/project-images/d1175c57-6101-4475-a0d0-6f0a6d0c9f13/user-images/6d31215b-9ecb-4395-8854-8e11e8601248"
+                        alt="Oceanus Proxima Project Cost Breakdown"
+                        width={1024}
+                        height={463}
+                        className="w-full h-auto object-contain"
+                        data-ai-hint="cost breakdown chart"
+                    />
+                </div>
+            </DashboardPanel>
+        </div>
+      </div>
     </div>
   );
 }
