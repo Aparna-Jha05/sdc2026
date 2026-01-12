@@ -8,9 +8,9 @@ import { motion } from 'framer-motion';
 
 const crewData = [
   { id: 1, name: "Aparna Jha", avatar: "24f2006184", gender: "female" },
-  { id: 2, name: "Pratham Amritkar", avatar: "24f2003909", gender: "male" },
   { id: 3, name: "Abhishek Chopra", avatar: "22f3003240", gender: "male" },
   { id: 4, name: "SK Zaheen", avatar: "24f1001764", gender: "male" },
+  { id: 2, name: "Pratham Amritkar", avatar: "24f2003909", gender: "male" },
 ];
 
 const CrewCard = ({ member }: { member: typeof crewData[0] }) => {

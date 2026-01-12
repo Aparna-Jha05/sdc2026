@@ -15,6 +15,8 @@ import { ExteriorView } from '@/components/views/exterior-view';
 import { SimulationView } from '@/components/views/simulation-view';
 import { CostView } from '@/components/views/cost-view';
 
+
+
 const navItems = [
   { id: 'command', label: 'COMMAND', icon: Command, component: CommandView },
   { id: 'engineering', label: 'ENGINEERING', icon: BookOpen, component: EngineeringView },
@@ -23,6 +25,7 @@ const navItems = [
   { id: 'exterior', label: 'EXTERIOR', icon: Sliders, component: ExteriorView },
   { id: 'cost', label: 'COST', icon: DollarSign, component: CostView },
   { id: 'simulation', label: 'SIMULATION', icon: AlertTriangle, component: SimulationView },
+
 ];
 
 export default function Home() {

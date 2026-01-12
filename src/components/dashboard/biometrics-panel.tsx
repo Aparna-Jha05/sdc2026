@@ -16,7 +16,7 @@ export function BiometricsPanel() {
   const { biometrics } = useSimulatedData();
 
   return (
-    <DashboardPanel delay={0.4}>
+    <DashboardPanel delay={0.4} className="overflow-hidden">
       <div className="h-full flex flex-col">
         <h2 className="text-lg font-headline font-bold text-primary mb-4 tracking-wider">AQUA-LUNG BIOMETRICS</h2>
         <div className="flex flex-col xl:flex-row items-center gap-4 mb-4">

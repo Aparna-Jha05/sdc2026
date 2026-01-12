@@ -14,7 +14,7 @@ export function CommandView() {
           <ThermodynamicsPanel />
         </div>
         <div className="lg:col-span-6 flex flex-col min-h-0">
-          <DashboardPanel delay={0.2} className="flex-grow flex flex-col">
+          <DashboardPanel delay={0.2} className="flex-grow flex flex-col overflow-hidden">
             <h2 className="text-base sm:text-lg font-headline font-bold text-primary mb-2 sm:mb-4 tracking-wider shrink-0 text-center">HABITAT DIGITAL TWIN</h2>
             <div className="w-full flex-1 flex items-center justify-center min-h-0">
               <DigitalTwinDiagram />

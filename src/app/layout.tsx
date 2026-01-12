@@ -22,7 +22,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased bg-background text-foreground/90 overflow-hidden h-screen">
+      <body className="font-body antialiased bg-background text-foreground/90 overflow-hidden h-screen" suppressHydrationWarning>
         <AppStateProvider>
           <Image
             src="https://img.freepik.com/premium-vector/vector-illustration-water-surface-texture_888509-449.jpg"

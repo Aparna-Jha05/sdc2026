@@ -79,7 +79,7 @@ export function CostView() {
         {/* Right Column - Cost Visualizations */}
         <div className="xl:col-span-2 flex flex-col gap-4 min-h-0">
           {/* Cost Overview Image */}
-          <DashboardPanel className="flex-grow flex flex-col min-h-[300px]">
+          <DashboardPanel className="flex-grow flex flex-col min-h-[300px] overflow-hidden">
             <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4 shrink-0">COMPREHENSIVE COST ANALYSIS</h2>
             <div className="flex-grow min-h-[250px] relative w-full">
               <Image
@@ -94,7 +94,7 @@ export function CostView() {
           </DashboardPanel>
 
           {/* Cost Breakdown Chart */}
-          <DashboardPanel className="flex-grow flex flex-col min-h-[300px]">
+          <DashboardPanel className="flex-grow flex flex-col min-h-[300px] overflow-hidden">
             <h2 className="text-md sm:text-lg font-headline font-bold text-primary mb-4 shrink-0">PROJECT COST BREAKDOWN</h2>
             <div className="flex-grow min-h-[250px] relative w-full">
               <Image
