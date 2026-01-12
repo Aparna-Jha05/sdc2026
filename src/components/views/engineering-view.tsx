@@ -66,7 +66,7 @@ export function EngineeringView() {
                 <AccordionTrigger className="text-md sm:text-lg font-headline text-primary/90">Habitat Repair Technologies</AccordionTrigger>
                 <AccordionContent>
                 <Image
-                      src="https://storage.googleapis.com/maker-studio-project-images-prod/project-images/d1175c57-6101-4475-a0d0-6f0a6d0c9f13/user-images/7dc0b06b-74c0-45e0-9a3b-2856f616e53c"
+                      src="https://storage.googleapis.com/maker-studio-project-images-prod/project-images/d1175c57-6101-4475-a0d0-6f0a6d0c9f13/user-images/611a13a7-e889-4b67-9304-638069352e85"
                       alt="Habitat Repair Technologies"
                       width={1200}
                       height={493}
